@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>日報チェック</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>日報チェック by 怒りの山本 v3.0</h1>
+    <p>日報と明細を照合し、現金・未収に振り分ける確認支援UI。</p>
+  </header>
+
+  <main>
+    <section class="card top-card">
+      <div class="button-grid">
+        <label class="btn dark">
+          📷 日報を撮影
+          <input id="dailyCamera" type="file" accept="image/*" capture="environment">
+        </label>
+
+        <label class="btn light">
+          🖼 写真を選択
+          <input id="dailyFile" type="file" accept="image/*">
+        </label>
+
+        <label class="btn dark">
+          📷 明細を撮影
+          <input id="receiptCamera" type="file" accept="image/*" capture="environment">
+        </label>
+
+        <label class="btn light">
+          🖼 写真を選択
+          <input id="receiptFile" type="file" accept="image/*">
+        </label>
+      </div>
+
+      <div class="preview-grid">
+        <div class="preview-box">
+          <h2>日報画像</h2>
+          <img id="dailyPreview" class="preview" alt="">
+        </div>
+        <div class="preview-box">
+          <h2>明細画像</h2>
+          <img id="receiptPreview" class="preview" alt="">
+        </div>
+      </div>
+
+      <button id="analyzeBtn" class="complete">🔍 日報を完成させる</button>
+    </section>
+
+    <section id="ocrPanel" class="card">
+      <details>
+        <summary>OCRテキスト貼り付け欄を開く</summary>
+
+        <div class="field">
+          <h2>日報OCRテキスト</h2>
+          <textarea id="dailyText" placeholder="日報からコピーした文字をここに貼り付け"></textarea>
+          <button class="sub" data-clear="dailyText">クリア</button>
+        </div>
+
+        <div class="field">
+          <h2>明細OCRテキスト</h2>
+          <textarea id="receiptText" placeholder="明細からコピーした文字をここに貼り付け"></textarea>
+          <button class="sub" data-clear="receiptText">クリア</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="summary" class="card hidden"></section>
+    <section id="result" class="card hidden"></section>
+
+    <section class="card help">
+      <details>
+        <summary>使い方</summary>
+        <ol>
+          <li>日報・明細を撮影、または写真を選択</li>
+          <li>iPhone標準OCRで文字をコピー</li>
+          <li>OCRテキスト欄に貼り付け</li>
+          <li>「日報を完成させる」を押す</li>
+        </ol>
+        <p>画像も売上データもサーバーへ送信しません。処理はブラウザ内だけです。</p>
+      </details>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
